@@ -21,7 +21,7 @@
                     <div class="col-xs-6">
                         <form action=" " method="post">
                             <div class="form-group">
-                                <lable for="cat-title">Add Category</lable>
+                                <lable for="cat-title">Add a Category</lable>
                                 <input name="cat_title" class="form-control" type="text">
                             </div>
                             <div class="form-group">
