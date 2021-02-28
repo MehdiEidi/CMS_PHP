@@ -1,10 +1,11 @@
+
 <!-- Header -->
-<?php include "includes/header.php"; ?>
+<?php include "includes/admin_header.php"; ?>
 
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include "includes/navigation.php"; ?>
+    <?php include "includes/admin_navigation.php"; ?>
 
     <div id="page-wrapper">
 
@@ -19,15 +20,42 @@
                     </h1>
 
                     <div class="col-xs-6">
-                        <form action=" " method="post">
+
+                        <?php insert_categories(); ?>
+
+                        <form action="" method="post">
                             <div class="form-group">
                                 <lable for="cat-title">Add Category</lable>
-                                <input name="cat_title" class="form-control" type="text">
+                                <input name="add_cat_title" class="form-control" type="text">
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-primary" name="submit" type="submit" value="Add Category">
                             </div
                         </form>
+
+                        <?php
+                        if (isset($_GET['edit'])) {
+                            $cat_id = $_GET['edit'];
+                            include "includes/update_categories.php";
+                        }
+                        ?>
+
+                    </div>
+
+                    <div class="col-xs-6">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Category Tile</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php getAllCategories(); ?>
+
+                                <?php deleteCategories(); ?>
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
@@ -40,4 +68,4 @@
     </div>
 
     <!-- footer -->
-    <?php include "includes/footer.php"; ?>
+    <?php include "includes/admin_footer.php"; ?>
