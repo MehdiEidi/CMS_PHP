@@ -24,6 +24,7 @@
                     echo "<li><a href='#'>{$cat_title}</a></li>";
                 }
                 ?>
+                <li><a href="admin/index.php">Amin</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
