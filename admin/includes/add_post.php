@@ -2,7 +2,7 @@
 if (isset($_POST['create_post'])) {
     $postTitle = $_POST['title'];
     $postAuthor = $_POST['author'];
-    $postCategoryId = $_POST['post_category_id'];
+    $postCategoryId = $_POST['post_category'];
     $postStatus = $_POST['post_status'];
     $postImage = $_FILES['image']['name'];
     $postImageTemp = $_FILES['image']['tmp_name'];
@@ -32,8 +32,24 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="post_category">Post Category Id</label>
-        <input type="text" class="form-control" name="post_category_id">
+        <select name="post_category" id="post_category">
+            <?php
+            $query = "SELECT * FROM categories";
+            global $connection;
+            $allCategoriesQueryResult = mysqli_query($connection, $query);
+
+            if (!$allCategoriesQueryResult) {
+                die('getting categories query failed ' . mysqli_error($connection));
+            }
+
+            while ($row = mysqli_fetch_assoc($allCategoriesQueryResult)) {
+                $catId = $row['cat_id'];
+                $catTitle = $row['cat_title'];
+
+                echo "<option value='{$catId}'>{$catTitle}</option>";
+            }
+            ?>
+        </select>
     </div>
 
     <div class="form-group">

@@ -48,14 +48,14 @@ if (isset($_POST['update_post'])) {
     }
 
     $query = "UPDATE posts SET ";
-    $query .= "post_title =  '{$postTitle}', ";
-    $query .= "post_category_id =  '{$postCategoryId}', ";
+    $query .= "post_title = '{$postTitle}', ";
+    $query .= "post_category_id = {$postCategoryId}, ";
     $query .= "post_date =  now(), ";
-    $query .= "post_author =  '{$postAuthor}', ";
-    $query .= "post_status =  '{$postStatus}', ";
-    $query .= "post_tags =  '{$postTags}', ";
-    $query .= "post_content =  '{$postContent}', ";
-    $query .= "post_image =  '{$postImage}' ";
+    $query .= "post_author = '{$postAuthor}', ";
+    $query .= "post_status = '{$postStatus}', ";
+    $query .= "post_tags = '{$postTags}', ";
+    $query .= "post_content = '{$postContent}', ";
+    $query .= "post_image = '{$postImage}' ";
     $query .= "WHERE post_id = {$postIdToEdit}  ";
 
     $updateQueryResult = mysqli_query($connection, $query);
@@ -88,7 +88,7 @@ if (isset($_POST['update_post'])) {
                 $catId = $row['cat_id'];
                 $catTitle = $row['cat_title'];
 
-                echo "<option value='{$catTitle}'>{$catTitle}</option>";
+                echo "<option value='{$catId}'>{$catTitle}</option>";
             }
             ?>
         </select>

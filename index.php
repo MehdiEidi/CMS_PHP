@@ -18,11 +18,12 @@
                 $allPostsQuery = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($allPostsQuery)) {
+                    $post_id = $row['post_id'];
                     $post_title = $row['post_title'];
                     $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
                     $post_image = $row['post_image'];
-                    $post_content = $row['post_content'];
+                    $post_content = substr($row['post_content'], 0, 150);
 
                 //Closing the php tag here and bring then bring all needed html tags inside the loop
                 ?>
@@ -34,7 +35,7 @@
 
                     <!-- First Blog Post -->
                     <h2>
-                        <a href="#"><?php echo $post_title; ?></a>
+                        <a href="post.php?post_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                     </h2>
                     <p class="lead">
                         by <a href="index.php"><?php echo $post_author; ?></a>

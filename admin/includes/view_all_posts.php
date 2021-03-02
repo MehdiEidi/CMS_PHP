@@ -33,7 +33,21 @@
         echo "<td>{$postId}</td>";
         echo "<td>{$postAuthor}</td>";
         echo "<td>{$postTitle}</td>";
-        echo "<td>{$postCategoryId}</td>";
+
+        $query = "SELECT * FROM categories WHERE cat_id = {$postCategoryId}";
+        $allCategoriesQueryResult = mysqli_query($connection, $query);
+
+        if (!$allCategoriesQueryResult) {
+            die("getting categories query failed " . mysqli_error($connection));
+        }
+
+        $cat_title = '';
+        while ($row = mysqli_fetch_assoc($allCategoriesQueryResult)) {
+            $cat_id = $row['cat_id'];
+            $cat_title = $row['cat_title'];
+        }
+
+        echo "<td>{$cat_title}</td>";
         echo "<td>{$postStatus}</td>";
         echo "<td><img width='100' src='../images/$postImage' alt='post image'></td>";
         echo "<td>{$postTags}</td>";
@@ -56,6 +70,7 @@ if (isset($_GET['delete'])) {
 
     global $connection;
     $deletePostQueryResult = mysqli_query($connection, $query);
+    header("Location: posts.php");
 
     if (!$deletePostQueryResult) {
         die('delete query failed. ' . mysqli_error($connection));
