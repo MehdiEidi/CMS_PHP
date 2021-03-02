@@ -39,9 +39,26 @@
         echo "<td>{$postTags}</td>";
         echo "<td>{$postCommentCount}</td>";
         echo "<td>{$postDate}</td>";
+        echo "<td><a href='posts.php?source=edit_post&post_id={$postId}'>Edit</a></td>";
+        echo "<td><a href='posts.php?delete={$postId}'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
 
     </tbody>
 </table>
+
+<?php
+if (isset($_GET['delete'])) {
+    $postId = $_GET['delete'];
+
+    $query = "DELETE FROM posts WHERE post_id = {$postId}";
+
+    global $connection;
+    $deletePostQueryResult = mysqli_query($connection, $query);
+
+    if (!$deletePostQueryResult) {
+        die('delete query failed. ' . mysqli_error($connection));
+    }
+}
+?>

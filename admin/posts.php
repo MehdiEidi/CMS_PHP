@@ -30,6 +30,9 @@
                         case 'add_post':
                             include "includes/add_post.php";
                             break;
+                        case 'edit_post':
+                            include "includes/admin_edit_post.php";
+                            break;
                         case 33:
                             echo 33;
                             break;
